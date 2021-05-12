@@ -38,13 +38,14 @@ std::vector<int> FDecomp(int n, long long m) {
 
 void PLex(int n) {
     if (!n) {
-        std::cout << "0";
+        std::cout << "1";
+        return;
     }
     std::vector<int> a;
     for (int j = 0; j <= n; j++) { a.push_back(j);}
     int i = 1;
     while (i) {
-        for (int j = 1; j <= n; j++) {std::cout << a[j];}
+        for (int j = 1; j <= n; j++) {std::cout << a[j] << " ";}
         std::cout << std::endl;
         i = n-1;
         while (a[i] > a[i+1]) { --i;}
@@ -60,6 +61,40 @@ void PLex(int n) {
     }
 }
 
+void generationOfAllPermutationsByEhrlichSwaps(int n) {
+    std::vector<int> a, b, c;
+    c.push_back(0);
+    for (size_t i = 0; i < n; ++i) {
+        a.push_back(i+1);
+        b.push_back(i);
+        c.push_back(0);
+    }
+    int k = 0, j = 0;
+    while (true) {
+        for(size_t i = 0; i < n; ++i) {
+            std::cout << a[i] << " ";
+        }
+        std::cout << std::endl;
+        k = 1;
+        while (c[k] == k) {
+            c[k] = 0;
+            ++k;
+        }
+        if (k == n) {
+            break;
+        } else {
+            ++c[k];
+        }
+        std::swap(a[0], a[b[k]]);
+        j = 1; --k;
+        while (j < k) {
+            std::swap(a[j], a[k]);
+            ++j; --k;
+        }
+    }
+}
+
+//Generation all binary vectors with length n
 void GreyBinCode(int n) {
     std::vector<int> vect;
     for (size_t i = 0; i < n; ++i) {
@@ -116,7 +151,6 @@ void GreyBinCodeWithoutCycles(int n) {
     }
 }
 
-//Generation all binary vectors with length n
 void VLex(int n) {
     std::vector<bool> boolVector;
     for (size_t i = 0; i <= n; ++i) {
@@ -133,6 +167,90 @@ void VLex(int n) {
             ++i;
         }
         boolVector[i] = true;
+    }
+}
+
+//end of bin vectors algorithms
+
+void CombinationsInLexicalOrder(int n, int t) {
+    std::vector<int> c;
+    c.push_back(0);
+    for (size_t i = 1; i <= t; ++i) {
+        c.push_back(i-1);
+    }
+    c.push_back(n);
+    c.push_back(0);
+    int j = 0;
+    while (true) {
+        for (size_t i = 1; i <= t; ++i) {
+            std::cout << c[i] << " ";
+        }
+        std::cout << std::endl;
+        j = 1;
+        while ((c[j] + 1) == c[j+1]) {
+            c[j] = j - 1;
+            ++j;
+        }
+        if (j > t) {
+            break;
+        } else {
+            ++c[j];
+        }
+    }
+}
+
+void CombinationsByGreyCode(int n, int t) {
+    std::vector<int> c;
+    c.push_back(0);
+    for (size_t i = 1; i <= t; ++i) {
+        c.push_back(i-1);
+    }
+    c.push_back(n);
+    int j = 0;
+    while (true) {
+        r2:
+        for (size_t i = t; i >= 1; --i) {
+            std::cout << c[i] << " ";
+        }
+        std::cout << std::endl;
+        if (t % 2) {
+            if ((c[1] + 1) < c[2]) {
+                ++c[1];
+                goto r2;
+            } else {
+                j = 2;
+                goto r4;
+            }
+        } else {
+            if (c[1] > 0) {
+                --c[1];
+                goto r2;
+            } else {
+                j = 2;
+                goto r5;
+            }
+        }
+        r4:
+        if (c[j] >= j) {
+            c[j] = c[j-1];
+            c[j-1] = j-2;
+            goto r2;
+        } else {
+            ++j;
+        }
+        r5:
+        if ((c[j] + 1) < c[j+1]) {
+            c[j-1] = c[j];
+            ++c[j];
+            goto r2;
+        }
+        ++j;
+        if (j <= t) {
+            goto r4;
+        }
+        else {
+            break;
+        }
     }
 }
 
@@ -201,8 +319,7 @@ void combinationsWithRepetitions (int n, int m) {
     }
 }
 
-void swap(std::vector<int>& a, int i, int j)
-{
+void swap(std::vector<int>& a, int i, int j) {
     int s = a[i];
     a[i] = a[j];
     a[j] = s;
@@ -228,6 +345,10 @@ bool nextSetArrangementWithoutRepetitions(std::vector<int>& a, int n, int m) {
 }
 
 void arrangementWithoutRepetitions(int n, int m) {
+    if (!m) {
+        std::cout << "0";
+        return;
+    }
     std::vector<int> a;
     for (size_t i = 0; i < n; ++i) {
         a.push_back(i+1);
@@ -289,34 +410,35 @@ void generateBracketSequence(int n, std::string s, int op_br, int cl_br) {
 
 
 int main() {
-    std::vector<int> decomp;
-    int n = 16;
-    long long m = 2940861129405;
-    decomp = FDecomp(n, m);
-    std::cout << "The number " << m << " is represented in n! decomposition, where n is " << n << std::endl;
-    for (size_t i = 1; i <= n; ++i) {
-        if (i != n) {
-            std::cout << decomp[i] << " * (" << i - 1 << ")! + ";
-        } else {
-            std::cout << decomp[i] << " * (" << i - 1 << ")!" << std::endl;
-        }
-    }
-    PLex(3);
-    //VLex(5);
-    //generateBracketSequence(8, "", 0, 0);
+    // all permutations with length n and n nums
+    //PLex(0);
+    //generationOfAllPermutationsByEhrlichSwaps(4);
+
+
+    //generation of all correct bracket sequences
+    //generateBracketSequence(12, "", 0, 0);
     //std::cout << numOfBrackets << std::endl;
+
+
     //combinationsWithoutRepetitions(5,3);
     //std::cout << std::endl << std::endl;
 
+    //CombinationsInLexicalOrder(5,2);
+    CombinationsByGreyCode(6,3);
+
+    //Combination with repetitions with length m and n possible numbers on each position
     //combinationsWithRepetitions(4,3);
     //std::cout << std::endl;
-    //arrangementWithoutRepetitions(4,2);
+
+
+    //arrangementWithoutRepetitions(4,0);
     //std::cout << std::endl;
-    //arrangementWithRepetitions(4,6);
+
+    //arrangementWithRepetitions(6,4);
 
     //Работа алгоритмов на двоичные цепочки
     /*std::vector<double> arr;
-    int n = 21;
+    int n = 10;
     auto start = std::chrono::high_resolution_clock::now();
     GreyBinCode(n);
     auto finish = std::chrono::high_resolution_clock::now();
@@ -334,7 +456,7 @@ int main() {
     std::cout << "Time elapsed without cycles: " << std::setprecision(10) << duration.count() << std::endl;
     std::cout << "Time elapsed standard: " << std::setprecision(10) << standart << std::endl;
     std::cout << "Time elapsed lexic: " << std::setprecision(10) << lexic << std::endl;*/
-/*        if (i == 0) {
+    /*    if (i == 0) {
             arr.push_back(lexic);
             arr.push_back(standart);
             arr.push_back(duration.count());
