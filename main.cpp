@@ -38,7 +38,7 @@ std::vector<int> FDecomp(int n, long long m) {
 
 void PLex(int n) {
     if (!n) {
-        std::cout << "1";
+        std::cout << "0";
         return;
     }
     std::vector<int> a;
@@ -411,20 +411,57 @@ void generateBracketSequence(int n, std::string s, int op_br, int cl_br) {
 
 int main() {
     // all permutations with length n and n nums
-    //PLex(0);
     //generationOfAllPermutationsByEhrlichSwaps(4);
+/*    int n = 10;
+    auto start = std::chrono::high_resolution_clock::now();
+    PLex(n);
+    auto finish = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = finish - start;
+    double lexic = duration.count();
+    start = std::chrono::high_resolution_clock::now();
+    generationOfAllPermutationsByEhrlichSwaps(n);
+    finish = std::chrono::high_resolution_clock::now();
+    duration = finish - start;
+    double ehrlich = duration.count();
 
-
+    std::cout << "Lexic:" << std::setprecision(10) << lexic << std::endl;
+    std::cout << "Ehrlich:" << std::setprecision(10) << ehrlich << std::endl;*/
     //generation of all correct bracket sequences
     //generateBracketSequence(12, "", 0, 0);
     //std::cout << numOfBrackets << std::endl;
+    int startPoint = 21, finishPoint = 24;
 
-
+    double arrayLex[41] = {0};
+    double arrayGrey[41] = {0};
+    for (int i = startPoint; i <= finishPoint; ++i) {
+        auto start = std::chrono::high_resolution_clock::now();
+        CombinationsInLexicalOrder(i, i/2);
+        auto finish = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration = finish - start;
+        double combInLex = duration.count();
+        std::cout << std::endl;
+        start = std::chrono::high_resolution_clock::now();
+        CombinationsByGreyCode(i, i/2);
+        finish = std::chrono::high_resolution_clock::now();
+        duration = finish - start;
+        double combInGreyCode = duration.count();
+        arrayLex[i] = combInLex;
+        arrayGrey[i] = combInGreyCode;
+    }
+    std::cout << "=============================================" << std::endl;
+    std::cout << "Lexical" << std::endl;
+    for (int i = startPoint; i <= finishPoint; ++i) {
+        std::cout << i << " " << arrayLex[i] << std::endl;
+    }
+    std::cout << "Grey" << std::endl;
+    for (int i = startPoint; i <= finishPoint; ++i) {
+        std::cout << i << " " << arrayGrey[i] << std::endl;
+    }
     //combinationsWithoutRepetitions(5,3);
     //std::cout << std::endl << std::endl;
 
     //CombinationsInLexicalOrder(5,2);
-    CombinationsByGreyCode(6,3);
+    //CombinationsByGreyCode(6,3);
 
     //Combination with repetitions with length m and n possible numbers on each position
     //combinationsWithRepetitions(4,3);
