@@ -48,15 +48,16 @@ void PLex(int n) {
         for (int j = 1; j <= n; j++) {std::cout << a[j] << " ";}
         std::cout << std::endl;
         i = n-1;
-        while (a[i] > a[i+1]) { --i;}
+        while (a[i] >= a[i+1]) { --i;}
         int j = n;
-        while (a[j] < a[i]) { --j;}
+        while (a[j] <= a[i]) { --j;}
         std::swap(a[i], a[j]);
         int k = i + 1;
-        int m = i + (n-i)/2;
-        while (k <= m) {
-            std::swap(a[k],a[n-k+i+1]);
+        j = n;
+        while (k < j) {
+            std::swap(a[k],a[j]);
             ++k;
+            --j;
         }
     }
 }
@@ -295,7 +296,7 @@ bool nextSetWithRepetitions(std::vector<int>& a, int n, int m) {
     if (j < 0) { return false; }
     if (a[j] >= n) { --j; }
     ++a[j];
-    if (j == (m-1)) {return true;}
+    if (j == (m-1)) { return true;}
     for (int k = j + 1; k < m; ++k) {
         a[k] = a[j];
     }
@@ -329,7 +330,7 @@ bool nextSetArrangementWithoutRepetitions(std::vector<int>& a, int n, int m) {
     int j = 0;
     do  // повторяем пока не будет найдено следующее размещение
     {
-        j = n - 1;
+        j = n - 2;
         while (j != -1 && a[j] >= a[j + 1]) j--;
         if (j == -1)
             return false; // больше размещений нет
@@ -369,12 +370,11 @@ bool nextSetArrangementWithRepetitions(std::vector<int>& a, int n, int m) {
     int j = m - 1;
     while (j >= 0 && a[j] == n) j--;
     if (j < 0) return false;
-    if (a[j] >= n)
-        j--;
+    if (a[j] >= n) j--;
     a[j]++;
     if (j == m - 1) return true;
     for (int k = j + 1; k < m; k++)
-        a[k] = 1;
+        a[k] = a[j];
     return true;
 }
 
@@ -412,7 +412,7 @@ void generateBracketSequence(int n, std::string s, int op_br, int cl_br) {
 int main() {
     // all permutations with length n and n nums
     //generationOfAllPermutationsByEhrlichSwaps(4);
-/*    int n = 10;
+    /*int n = 10;
     auto start = std::chrono::high_resolution_clock::now();
     PLex(n);
     auto finish = std::chrono::high_resolution_clock::now();
@@ -427,11 +427,25 @@ int main() {
     std::cout << "Lexic:" << std::setprecision(10) << lexic << std::endl;
     std::cout << "Ehrlich:" << std::setprecision(10) << ehrlich << std::endl;*/
     //generation of all correct bracket sequences
-    //generateBracketSequence(12, "", 0, 0);
+    //generateBracketSequence(3, "", 0, 0);
     //std::cout << numOfBrackets << std::endl;
-    int startPoint = 21, finishPoint = 24;
-
-    double arrayLex[41] = {0};
+    int startPoint = 1, finishPoint = 5;
+    double time[30] = {0};
+    for (int i = startPoint; i <= finishPoint; ++i) {
+        auto start = std::chrono::high_resolution_clock::now();
+        generationOfAllPermutationsByEhrlichSwaps(i);
+        auto finish = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration = finish - start;
+        double elapsedTime = duration.count();
+        time[i] = elapsedTime;
+    }
+    for (size_t i = startPoint; i <= finishPoint; ++i) {
+        std::cout << "Iteration : " << i << " Time : " << time[i] << std::endl;
+    }
+    //combinationsWithRepetitions(8,8);
+    //CombinationsByGreyCode(6, 3);
+    //PLex(4);
+    /*double arrayLex[41] = {0};
     double arrayGrey[41] = {0};
     for (int i = startPoint; i <= finishPoint; ++i) {
         auto start = std::chrono::high_resolution_clock::now();
@@ -456,10 +470,9 @@ int main() {
     std::cout << "Grey" << std::endl;
     for (int i = startPoint; i <= finishPoint; ++i) {
         std::cout << i << " " << arrayGrey[i] << std::endl;
-    }
+    }*/
     //combinationsWithoutRepetitions(5,3);
     //std::cout << std::endl << std::endl;
-
     //CombinationsInLexicalOrder(5,2);
     //CombinationsByGreyCode(6,3);
 
