@@ -12,6 +12,10 @@ jobs:
       - uses: actions/checkout@v3
       - name: Check_dependencies
         run: |
-          pwd
+          pwd 
+          ls -alF
+          g++ -o app main.cpp
+          echo $?
+
 
 
