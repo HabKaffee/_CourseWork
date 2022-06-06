@@ -407,7 +407,7 @@ void generateBracketSequence(int n, std::string s, int op_br, int cl_br) {
 
 bool Test1() {
   long long expected = 720;
-  long long result = factorial(6);
+  long lofng result = factorial(6);
   return expected == result;
 }
 

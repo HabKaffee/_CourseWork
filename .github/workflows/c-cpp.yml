@@ -21,12 +21,8 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             !! BUILD FAILED on ${{ matrix.os }}!!
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
-            
-            Repository: ${{ github.repository }}
-            
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            ${{ github.actor }}: ruined ${{ github.repository }}
+            by https://github.com/${{ github.repository }}/commit/${{github.sha}}
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
@@ -72,7 +68,6 @@ jobs:
         with:
           name: Work_artefacts
           path: /home/runner/work/_CourseWork/_CourseWork/artifacts.tar.gz
-          # The desired behavior if no files are found using the provided path.
   
   send_message:
     runs-on: ubuntu-latest
@@ -91,7 +86,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             ${{ github.actor }} created commit:
-            BUILD SUCCESS!
+            !! BUILD SUCCESS !!
             Commit message: ${{ github.event.commits[0].message }}
             
             Repository: ${{ github.repository }}
