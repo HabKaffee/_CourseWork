@@ -11,11 +11,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check_dependencies
-        run: |
-          pwd 
-          ls -alF
-          g++ -o app main.cpp
-          echo $?
-
-
+        run: bash script/script.sh
+  run-test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: |
+        ./app > artifact.txt
+      - name: a Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: |
+          ~/.
+          
 
