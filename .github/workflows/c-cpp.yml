@@ -45,5 +45,16 @@ jobs:
           name: a Build Artifact
           path: /home/runner/work/_CourseWork/_CourseWork/artifacts.tar.gz
           # The desired behavior if no files are found using the provided path.
-                
+      - name: send telegram message on push
+          uses: appleboy/telegram-action@master
+          with:
+            to: ${{ secrets.TELEGRAM_ID }}
+            token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+            message: |
+              ${{ github.actor }} created commit:
+              Commit message: ${{ github.event.commits[0].message }}
+              
+              Repository: ${{ github.repository }}
+              
+              See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}    
 
