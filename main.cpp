@@ -420,6 +420,6 @@ bool Test2() {
   return true;
 }
 
-int main() {
+int maifn() {
     return Test1() && Test2() ? 0 : 1;
 }
