@@ -20,8 +20,9 @@ jobs:
           to: ${{ secrets.TELEGRAM_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            !! BUILD FAILED on ${{ matrix.os }}!!
-            ${{ github.actor }}: ruined ${{ github.repository }}
+            😑🤬!! BUILD FAILED on ${{ matrix.os }}!!🤬😑
+            Unfortunately I'm not surprised :D
+            It's time to punish ${{ github.actor }} because they ruined ${{ github.repository }}
             by https://github.com/${{ github.repository }}/commit/${{github.sha}}
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
@@ -56,13 +57,10 @@ jobs:
           to: ${{ secrets.TELEGRAM_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            !! RUN FAILED on ${{ matrix.os }}!!
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
-            
-            Repository: ${{ github.repository }}
-            
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            😑🤬!! RUN FAILED on ${{ matrix.os }}!!🤬😑
+            Unfortunately I'm not surprised :D
+            It's time to punish ${{ github.actor }} because they ruined ${{ github.repository }}
+            by https://github.com/${{ github.repository }}/commit/${{github.sha}}
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
