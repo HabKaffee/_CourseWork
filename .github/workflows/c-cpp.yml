@@ -13,7 +13,7 @@ jobs:
       - name: Check_dependencies
         run: |
           bash script/script.sh
-      - name: send telegram message on push
+      - name: send success telegram message on push
         if: ${{ success() }}
         uses: appleboy/telegram-action@master
         with:
@@ -27,6 +27,7 @@ jobs:
             Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+      - name: send failure telegram message on push
         if: ${{ failure() }}
         uses: appleboy/telegram-action@master
         with:
