@@ -1,10 +1,31 @@
-add_executable(${PROJECT_NAME}.test
-  Test.cpp
-  )
-target_link_libraries(${PROJECT_NAME}.test
-  ${PROJECT_NAME} gtest pthread)
-target_compile_definitions(${PROJECT_NAME}.test 
-  PRIVATE TEST_DIR="${CMAKE_CURRENT_LIST_DIR}/test")
+cmake_minimum_required(VERSION 3.12)
+project(test CXX)
 
-install(TARGETS ${PROJECT_NAME}.test
-        DESTINATION "${tool_dest}")
+set(CMAKE_CXX_STANDARD 20)
+
+message(STATUS "CC set to: $ENV{CC}")
+message(STATUS "CXX set to:$ENV{CXX}")
+
+if (WIN32)
+    option(GTEST_INCLUDE "")
+    option(GTEST_LINK "")
+
+    link_directories("D:/gtest/lib")
+    include_directories("D:/gtest/include")
+
+    set(CMAKE_CXX_FLAGS_RELEASE "/MT")
+    set(CMAKE_CXX_FLAGS_DEBUG "/MTd")
+endif ()
+
+if (APPLE)
+    link_directories("/usr/local/lib")
+    include_directories("/usr/local/include")
+endif ()
+
+add_executable(test test.cpp)
+
+if (WIN32)
+    target_link_libraries(${PROJECT_NAME} PRIVATE gtest_main gtest)
+else ()
+    target_link_libraries(${PROJECT_NAME} PRIVATE gtest pthread)
+endif ()
