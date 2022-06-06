@@ -19,7 +19,6 @@ jobs:
           name: a Build Artifact
           path: ~/app
           # The desired behavior if no files are found using the provided path.
-      -
   run-test:
     strategy:
       matrix:
