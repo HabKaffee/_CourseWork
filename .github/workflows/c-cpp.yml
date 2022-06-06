@@ -83,10 +83,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            ${{ github.actor }} created commit:
-            !! BUILD SUCCESS !!
-            Commit message: ${{ github.event.commits[0].message }}
-            
-            Repository: ${{ github.repository }}
-            
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            HOORAH🥳 BUILD SUCCESSFUL!🤗
+            To be honest, I'm surprised that ${{ github.actor }} didn't ruin all project😂
+            If you want to see changes, feel free to follow link below:
+            https://github.com/${{ github.repository }}/commit/${{github.sha}}
