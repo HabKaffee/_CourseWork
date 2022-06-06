@@ -20,8 +20,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            ${{ github.actor }} created commit:
             !! BUILD DONE on ${{ matrix.os }}!!
+            ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
             
             Repository: ${{ github.repository }}
@@ -34,8 +34,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            ${{ github.actor }} created commit:
             !! BUILD FAILED on ${{ matrix.os }}!!
+            ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
             
             Repository: ${{ github.repository }}
