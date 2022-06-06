@@ -308,10 +308,7 @@ void combinationsWithRepetitions (int n, int m) {
     for (size_t i = 0; i < std::max(n,m); ++i) {
         array.push_back(1);
     }
-    for (size_t i = 0; i < m; ++i){
-        std::cout << array[i] << "\t";
-    }
-    std::cout << std::endl;
+    for (size_t i = 0; i < m; ++i)
     while(nextSetWithRepetitions(array,n,m)) {
         for (size_t i = 0; i < m; ++i){
             std::cout << array[i] << "\t";
@@ -408,13 +405,21 @@ void generateBracketSequence(int n, std::string s, int op_br, int cl_br) {
     }
 }
 
+bool Test1() {
+  long long expected = 720;
+  long long result = factorial(6);
+  return expected == result;
+}
+
+bool Test2() {
+  std::vector<int> expected = {0,0,1,2};
+  auto a = FDecomp(10, 5);
+  for (int i = 0; i < a.size(); ++i) {
+    if (expected[i] != a[i]) return false;
+  }
+  return true;
+}
 
 int main() {
-    //CombinationsByGreyCode(6, 3);
-    //auto a = FDecomp(10,5);
-    //for (int i = 0; i < a.size(); ++i) {
-    //    std::cout << a[i];
-    //}
-    //std::cout << 123;
-    return 0;
+    return Test1() && Test2() ? 0 : 1;
 }
