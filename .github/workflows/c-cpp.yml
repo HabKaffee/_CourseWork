@@ -11,7 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check_dependencies
-        run: bash script/script.sh
+        run: |
+          ls
+          bash script/script.sh
   run-test:
     strategy:
       matrix:
