@@ -60,7 +60,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            !! BUILD FAILED on ${{ matrix.os }}!!
+            !! RUN FAILED on ${{ matrix.os }}!!
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
             

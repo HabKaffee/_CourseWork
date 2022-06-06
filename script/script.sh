@@ -2,7 +2,7 @@
 
 pwd
 ls -alF
-g++ -o app test/Test.cpp
+g++ -o app main.cpp
 if [[ $? != 0 ]]
 then
     apt install build-essential
