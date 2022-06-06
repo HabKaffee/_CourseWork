@@ -21,7 +21,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             ${{ github.actor }} created commit:
-            !! BUILD DONE !!
+            !! BUILD DONE on ${{ matrix.os }}!!
             Commit message: ${{ github.event.commits[0].message }}
             
             Repository: ${{ github.repository }}
@@ -35,7 +35,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             ${{ github.actor }} created commit:
-            !! BUILD FAILED !!
+            !! BUILD FAILED on ${{ matrix.os }}!!
             Commit message: ${{ github.event.commits[0].message }}
             
             Repository: ${{ github.repository }}
