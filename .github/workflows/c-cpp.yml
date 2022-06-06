@@ -17,7 +17,7 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: a Build Artifact
-          path: ~/
+          path: /home/runner/work/_CourseWork/_CourseWork
           # The desired behavior if no files are found using the provided path.
   run-test:
     strategy:
@@ -31,7 +31,7 @@ jobs:
         with:
           # Artifact name
           name: app
-          path: ~/
+          path: /home/runner/work/_CourseWork/_CourseWork
       
       - name: Run_checks
         run: |
