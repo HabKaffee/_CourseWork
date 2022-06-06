@@ -425,7 +425,7 @@ int main() {
     // }
     //combinationsWithRepetitions(8,8);
     CombinationsByGreyCode(6, 3);
-    std::caut << 123;
+    std::cout << 123;
     //PLex(4);
     /*double arrayLex[41] = {0};
     double arrayGrey[41] = {0};
