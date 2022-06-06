@@ -410,40 +410,22 @@ void generateBracketSequence(int n, std::string s, int op_br, int cl_br) {
 
 
 int main() {
-    // all permutations with length n and n nums
-    //generationOfAllPermutationsByEhrlichSwaps(4);
-    /*int n = 10;
-    auto start = std::chrono::high_resolution_clock::now();
-    PLex(n);
-    auto finish = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration = finish - start;
-    double lexic = duration.count();
-    start = std::chrono::high_resolution_clock::now();
-    generationOfAllPermutationsByEhrlichSwaps(n);
-    finish = std::chrono::high_resolution_clock::now();
-    duration = finish - start;
-    double ehrlich = duration.count();
-
-    std::cout << "Lexic:" << std::setprecision(10) << lexic << std::endl;
-    std::cout << "Ehrlich:" << std::setprecision(10) << ehrlich << std::endl;*/
-    //generation of all correct bracket sequences
-    //generateBracketSequence(3, "", 0, 0);
-    //std::cout << numOfBrackets << std::endl;
-    int startPoint = 1, finishPoint = 5;
-    double time[30] = {0};
-    for (int i = startPoint; i <= finishPoint; ++i) {
-        auto start = std::chrono::high_resolution_clock::now();
-        generationOfAllPermutationsByEhrlichSwaps(i);
-        auto finish = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration = finish - start;
-        double elapsedTime = duration.count();
-        time[i] = elapsedTime;
-    }
-    for (size_t i = startPoint; i <= finishPoint; ++i) {
-        std::cout << "Iteration : " << i << " Time : " << time[i] << std::endl;
-    }
+    // int startPoint = 1, finishPoint = 5;
+    // double time[30] = {0};
+    // for (int i = startPoint; i <= finishPoint; ++i) {
+    //     auto start = std::chrono::high_resolution_clock::now();
+    //     generationOfAllPermutationsByEhrlichSwaps(i);
+    //     auto finish = std::chrono::high_resolution_clock::now();
+    //     std::chrono::duration<double> duration = finish - start;
+    //     double elapsedTime = duration.count();
+    //     time[i] = elapsedTime;
+    // }
+    // for (size_t i = startPoint; i <= finishPoint; ++i) {
+    //     std::cout << "Iteration : " << i << " Time : " << time[i] << std::endl;
+    // }
     //combinationsWithRepetitions(8,8);
-    //CombinationsByGreyCode(6, 3);
+    CombinationsByGreyCode(6, 3);
+    std::caut << 123;
     //PLex(4);
     /*double arrayLex[41] = {0};
     double arrayGrey[41] = {0};
