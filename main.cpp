@@ -409,12 +409,12 @@ void generateBracketSequence(int n, std::string s, int op_br, int cl_br) {
 }
 
 
-int main() {
-    //CombinationsByGreyCode(6, 3);
-    //auto a = FDecomp(10,5);
-    //for (int i = 0; i < a.size(); ++i) {
-    //    std::cout << a[i];
-    //}
-    //std::cout << 123;
-    return 0;
-}
+// int main() {
+//     //CombinationsByGreyCode(6, 3);
+//     //auto a = FDecomp(10,5);
+//     //for (int i = 0; i < a.size(); ++i) {
+//     //    std::cout << a[i];
+//     //}
+//     //std::cout << 123;
+//     return 0;
+// }
