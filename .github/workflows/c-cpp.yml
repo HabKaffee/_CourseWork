@@ -13,6 +13,13 @@ jobs:
       - name: Check_dependencies
         run: |
           bash script/script.sh
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: a Build Artifact
+          path: ~/app
+          # The desired behavior if no files are found using the provided path.
+      -
   run-test:
     strategy:
       matrix:
@@ -20,6 +27,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs: build
     steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.0
+        with:
+          # Artifact name
+          name: app
+          path: ~/
+      
       - name: Run_checks
         run: |
           ./app > artifact.txt
