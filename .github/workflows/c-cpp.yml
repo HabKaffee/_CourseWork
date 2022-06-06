@@ -35,6 +35,7 @@ jobs:
       
       - name: Run_checks
         run: |
+          chmod +x app
           ./app > artifact.txt
 
       - name: Upload a Build Artifact
