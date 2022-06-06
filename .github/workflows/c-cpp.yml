@@ -21,7 +21,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             😑🤬!! BUILD FAILED on ${{ matrix.os }}!!🤬😑
-            Unfortunately I'm not surprised :D
+            Unfortunately I'm not surprised 😂
             It's time to punish ${{ github.actor }} because they ruined ${{ github.repository }}
             by https://github.com/${{ github.repository }}/commit/${{github.sha}}
       - name: Upload a Build Artifact
@@ -58,7 +58,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             😑🤬!! RUN FAILED on ${{ matrix.os }}!!🤬😑
-            Unfortunately I'm not surprised :D
+            Unfortunately I'm not surprised 😂
             It's time to punish ${{ github.actor }} because they ruined ${{ github.repository }}
             by https://github.com/${{ github.repository }}/commit/${{github.sha}}
       - name: Upload a Build Artifact
