@@ -34,6 +34,7 @@ jobs:
           path: /home/runner/work/_CourseWork/_CourseWork
       
       - name: Run_checks
+        if: ${{ success() }}
         run: |
           chmod +x app
           ./app > artifact.txt
